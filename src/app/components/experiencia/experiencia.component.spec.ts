@@ -1,37 +1,54 @@
-import { Component } from '@angular/core';
-import { FormsModule } from '@angular/forms';  // Importar FormsModule para el uso de ngModel
-import { ExperienciaService } from '../../services/experiencia.service';  // Servicio que manejará las peticiones
-import { Experiencia } from '../../models/experiencia.model';  // Interfaz del modelo de experiencia
+import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ExperienciaComponent } from './experiencia.component';
+import { FormsModule } from '@angular/forms';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { ExperienciaService } from '../../services/experiencia.service';
+import { UserService } from '../../services/user.service';
+import { of } from 'rxjs';
 
-@Component({
-  selector: 'app-experiencia',
-  templateUrl: './experiencia.component.html',
-  styleUrls: ['./experiencia.component.css'],
-  standalone: true,
-  imports: [FormsModule]  // Importar FormsModule aquí
-})
-export class ExperienciaComponent {
-  newExperience: Experiencia = {
-    owner: '',
-    participants: [],  // Mantener como un array aquí
-    description: ''
-  };
-experiencias: any;
+describe('ExperienciaComponent', () => {
+  let component: ExperienciaComponent;
+  let fixture: ComponentFixture<ExperienciaComponent>;
+  let experienciaService: jasmine.SpyObj<ExperienciaService>;
+  let userService: jasmine.SpyObj<UserService>;
 
-  constructor(private experienciaService: ExperienciaService) {}
+  beforeEach(async () => {
+    const experienciaServiceSpy = jasmine.createSpyObj('ExperienciaService', ['getExperiencias', 'addExperiencia']);
+    const userServiceSpy = jasmine.createSpyObj('UserService', ['getUsers']);
 
-  // Método que se ejecuta cuando se envía el formulario
-  onSubmit(): void {
-    // Convertir la lista de participantes a partir de la cadena
-    const participantString = this.newExperience.participants.join(', ');
-    this.newExperience.participants = participantString.split(',').map(participant => participant.trim());
+    await TestBed.configureTestingModule({
+      declarations: [ExperienciaComponent],
+      imports: [FormsModule, HttpClientTestingModule],
+      providers: [
+        { provide: ExperienciaService, useValue: experienciaServiceSpy },
+        { provide: UserService, useValue: userServiceSpy }
+      ]
+    }).compileComponents();
 
-    this.experienciaService.addExperiencia(this.newExperience).subscribe((response) => {
-      console.log('Experiencia creada', response);
-      // Lógica adicional aquí
-    });
-  }
-}
+    experienciaService = TestBed.inject(ExperienciaService) as jasmine.SpyObj<ExperienciaService>;
+    userService = TestBed.inject(UserService) as jasmine.SpyObj<UserService>;
+  });
 
+  beforeEach(() => {
+    fixture = TestBed.createComponent(ExperienciaComponent);
+    component = fixture.componentInstance;
+    component.selectedParticipants = []; // Asegúrate de inicializar selectedParticipants
+    fixture.detectChanges();
+  });
 
+  it('should create', () => {
+    expect(component).toBeTruthy();
+  });
 
+  it('should have an empty list of selected participants initially', () => {
+    expect(component.selectedParticipants).toEqual([]); // Asegúrate de que selectedParticipants esté vacío inicialmente
+  });
+
+  it('should call getExperiencias on init', () => {
+    expect(experienciaService.getExperiencias).toHaveBeenCalled();
+  });
+
+  it('should call getUsers on init', () => {
+    expect(userService.getUsers).toHaveBeenCalled();
+  });
+});

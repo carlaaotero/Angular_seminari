@@ -2,6 +2,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ExperienciaService } from '../../services/experiencia.service';
 import { Experiencia } from '../../models/experiencia.model';
+import { UserService } from '../../services/user.service';
+import { User } from '../../models/user.model';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
@@ -14,27 +16,30 @@ import { FormsModule } from '@angular/forms';
   imports: [FormsModule, CommonModule, HttpClientModule]
 })
 export class ExperienciaComponent implements OnInit {
-  experiencias: Experiencia[] = []; // Variable para almacenar la lista de experiencias
+  experiencias: Experiencia[] = []; // Lista de experiencias
+  users: User[] = []; // Lista de usuarios para los desplegables
+  selectedParticipants: string[] = []; // Participantes seleccionados como ObjectId
 
-  // Estructura inicial para una nueva experiencia con el tipo explícito de participants
+  // Estructura inicial para una nueva experiencia
   newExperience: Experiencia = {
     owner: '',
-    participants: [] as string[], // Asegúrate de que está tipado explícitamente como un array de strings
+    participants: [],
     description: ''
   };
 
-  constructor(private experienciaService: ExperienciaService) {}
+  constructor(private experienciaService: ExperienciaService, private userService: UserService) {}
 
   ngOnInit(): void {
-    this.getExperiencias(); // Llamar al método para obtener experiencias al inicializar el componente
+    this.getExperiencias(); // Obtener la lista de experiencias
+    this.getUsers(); // Obtener la lista de usuarios
   }
 
   // Obtener la lista de experiencias desde la API
   getExperiencias(): void {
     this.experienciaService.getExperiencias().subscribe(
       (data: Experiencia[]) => {
-        this.experiencias = data; // Asignar la lista de experiencias recibida
-        console.log('Experiencias recibidas:', data); // Verificar en la consola
+        this.experiencias = data;
+        console.log('Experiencias recibidas:', data);
       },
       (error) => {
         console.error('Error al obtener las experiencias:', error);
@@ -42,15 +47,29 @@ export class ExperienciaComponent implements OnInit {
     );
   }
 
-  // Manejar el envío del formulario y agregar la nueva experiencia
+  // Obtener la lista de usuarios desde la API
+  getUsers(): void {
+    this.userService.getUsers().subscribe(
+      (data: User[]) => {
+        this.users = data;
+        console.log('Usuarios recibidos:', data);
+      },
+      (error) => {
+        console.error('Error al obtener los usuarios:', error);
+      }
+    );
+  }
+
+  // Obtener el nombre de un usuario dado su ObjectId
+  getUserNameById(userId: string): string {
+    const user = this.users.find((u) => u._id === userId);
+    return user ? user.name : 'Desconocido';
+  }
+
+  // Manejar el envío del formulario
   onSubmit(): void {
-    // Verificar si participants es un string y convertirlo a array
-    if (typeof this.newExperience.participants === 'string') {
-      // Usa "as string" para forzar el tipo en este contexto
-      this.newExperience.participants = (this.newExperience.participants as string)
-        .split(',')
-        .map(participant => participant.trim()); // Convertir a array y limpiar espacios
-    }
+    // Convertir selectedParticipants a ObjectId[] antes de enviar al backend
+    this.newExperience.participants = this.selectedParticipants;
 
     // Llamar al servicio para agregar la nueva experiencia
     this.experienciaService.addExperiencia(this.newExperience).subscribe(
@@ -65,12 +84,13 @@ export class ExperienciaComponent implements OnInit {
     );
   }
 
-  // Método para resetear el formulario después de enviar
+  // Resetear el formulario después de crear una experiencia
   resetForm(): void {
     this.newExperience = {
       owner: '',
-      participants: [] as string[], // Asegúrate de inicializarlo como un array vacío de strings
+      participants: [],
       description: ''
     };
+    this.selectedParticipants = []; // Limpiar los participantes seleccionados
   }
 }

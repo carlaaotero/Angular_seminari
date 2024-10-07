@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Experiencia } from '../models/experiencia.model';
 
@@ -19,8 +19,9 @@ export class ExperienciaService {
     return this.http.get<Experiencia>(`${this.apiUrl}/${id}`);
   }
 
-  addExperiencia(experiencia: Experiencia): Observable<Experiencia> {
-    return this.http.post<Experiencia>(this.apiUrl, experiencia);
+  addExperiencia(newExperience: Experiencia): Observable<Experiencia> {
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+    return this.http.post<Experiencia>(this.apiUrl, newExperience, { headers });
   }
 
   updateExperiencia(id: string, experiencia: Experiencia): Observable<Experiencia> {
