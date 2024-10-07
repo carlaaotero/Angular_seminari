@@ -1,38 +1,37 @@
-<div class="experiencia-form">
-  <h2>Crear Nueva Experiencia</h2>
-  
-  <form (ngSubmit)="onSubmit()">
+<!-- experiencia.component.html -->
+<div class="container">
+  <div class="experiencia-form">
+    <h2>Crear Nueva Experiencia</h2>
+    <form (ngSubmit)="onSubmit()">
       <div class="form-group">
-          <label for="owner">Propietario:</label>
-          <input type="text" 
-          id="owner" [(ngModel)]="newExperience.owner"
-           name="owner" required>
-        </div>
-
-      <div class="form-group">
-          <label for="participants">Participantes (separados por comas):</label>
-          <input type="text" id="participants" [(ngModel)]="newExperience.participants" name="participants" required>
+        <label for="owner">Propietario:</label>
+        <input type="text" id="owner" [(ngModel)]="newExperience.owner" name="owner" required>
       </div>
-
       <div class="form-group">
-          <label for="description">Descripción:</label>
-          <textarea id="description" [(ngModel)]="newExperience.description" name="description" required></textarea>
+        <label for="participants">Participantes (separados por comas):</label>
+        <input type="text" id="participants" [(ngModel)]="newExperience.participants" name="participants" required>
       </div>
-
+      <div class="form-group">
+        <label for="description">Descripción:</label>
+        <textarea id="description" [(ngModel)]="newExperience.description" name="description" required></textarea>
+      </div>
       <button type="submit">Enviar</button>
-  </form>
-
-  <!-- Lista de usuarios a la derecha -->
-  <h2>Lista de Experiencias</h2>
-  <ul>
-    <li *ngFor="let experiencia of experiencias; let i = index">
-      <div>
-        <strong>{{ experiencia.owner }}</strong>
-       
-      </div>
-    </li>
-  </ul>
+    </form>
+  </div>
+  
+  <div class="experiencia-list">
+    <h1>Lista de Experiencias</h1>
+    <ul>
+      <li *ngFor="let experiencia of experiencias">
+        <h3>Propietario: {{ experiencia.owner }}</h3>
+        <p>Descripción: {{ experiencia.description }}</p>
+        <h4>Participantes:</h4>
+        <ul>
+          <li *ngFor="let participant of experiencia.participants">
+            {{ participant }}
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </div>
 </div>
-
-
-

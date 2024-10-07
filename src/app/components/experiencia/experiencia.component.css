@@ -1,98 +1,134 @@
 /* Estilos generales */
 body {
-    font-family: 'Comic Sans MS', cursive, sans-serif; /* Tipografía divertida */
-    background-color: #f0f8ff;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    margin: 0;
-  }
-  
-  /* Contenedor del formulario */
-  .experiencia-form {
-    background-color: #ffcccb;
-    padding: 30px;
-    border-radius: 15px;
-    box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.2);
-    max-width: 400px;
-    width: 100%;
-    text-align: center;
-  }
-  
-  /* Título */
-  h2 {
-    color: #ff69b4; /* Color vibrante */
-    font-size: 2.5rem;
-    margin-bottom: 20px;
-    text-shadow: 2px 2px #ffa07a;
-  }
-  
-  /* Estilos para los inputs y textarea */
-  input[type="text"], textarea {
-    width: 100%;
-    padding: 10px;
-    margin: 10px 0;
-    border-radius: 8px;
-    border: 2px solid #ff69b4;
-    outline: none;
-    font-size: 1rem;
-    transition: all 0.3s ease-in-out;
-  }
-  
-  /* Efecto hover en los campos de formulario */
-  input[type="text"]:focus, textarea:focus {
-    border-color: #ffa07a;
-    box-shadow: 0px 0px 10px #ff69b4;
-  }
-  
-  /* Botón de enviar */
-  button {
-    background-color: #ff69b4;
-    border: none;
-    color: white;
-    padding: 12px 20px;
-    font-size: 1.2rem;
-    cursor: pointer;
-    border-radius: 25px;
-    transition: all 0.3s ease-in-out;
-    margin-top: 15px;
-    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
-  }
-  
-  /* Efecto hover en el botón */
-  button:hover {
-    background-color: #ffa07a;
-    transform: translateY(-3px);
-    box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.3);
-  }
-  
-  /* Efecto al hacer clic en el botón */
-  button:active {
+  font-family: 'Comic Sans MS', cursive, sans-serif; /* Tipografía divertida */
+  background-color: #f0f8ff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+}
+
+/* Contenedor principal para organizar los elementos */
+.container {
+  display: flex; /* Flexbox para organizar el formulario y la lista */
+  justify-content: space-between; /* Espacio entre los elementos */
+  width: 80%; /* Limitar el ancho total del contenedor */
+  align-items: flex-start; /* Alinear elementos al inicio verticalmente */
+  margin: 20px auto; /* Centrarse horizontalmente */
+}
+
+/* Contenedor del formulario */
+.experiencia-form {
+  background-color: #ffcccb;
+  padding: 30px;
+  border-radius: 15px;
+  box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.2);
+  max-width: 400px; /* Limitar el ancho máximo del formulario */
+  width: 45%; /* Ajustar al 45% del contenedor para permitir espacio */
+  text-align: center;
+}
+
+/* Título */
+h2 {
+  color: #ff69b4; /* Color vibrante */
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+  text-shadow: 2px 2px #ffa07a;
+  animation: bounce 2s infinite; /* Animación que hace "saltar" el título */
+}
+
+/* Estilos para los inputs y textarea */
+input[type="text"], textarea {
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
+  border-radius: 8px;
+  border: 2px solid #ff69b4;
+  outline: none;
+  font-size: 1rem;
+  transition: all 0.3s ease-in-out;
+}
+
+/* Efecto hover en los campos de formulario */
+input[type="text"]:focus, textarea:focus {
+  border-color: #ffa07a;
+  box-shadow: 0px 0px 10px #ff69b4;
+}
+
+/* Botón de enviar */
+button {
+  background-color: #ff69b4;
+  border: none;
+  color: white;
+  padding: 12px 20px;
+  font-size: 1.2rem;
+  cursor: pointer;
+  border-radius: 25px;
+  transition: all 0.3s ease-in-out;
+  margin-top: 15px;
+  box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* Efecto hover en el botón */
+button:hover {
+  background-color: #ffa07a;
+  transform: translateY(-3px);
+  box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.3);
+}
+
+/* Efecto al hacer clic en el botón */
+button:active {
+  transform: translateY(0);
+  box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* Estilos para las etiquetas */
+label {
+  font-size: 1.2rem;
+  color: #333;
+  display: block;
+  margin-bottom: 5px;
+}
+
+/* Contenedor para la lista de experiencias */
+.experiencia-list {
+  background-color: #f1f1f1;
+  padding: 20px;
+  border-radius: 15px;
+  box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.2);
+  max-width: 600px; /* Limitar el ancho máximo */
+  width: 45%; /* Ajustar al 45% del contenedor */
+}
+
+/* Estilo general para la lista de experiencias */
+.experiencia-list ul {
+  list-style: none; /* Quitar las viñetas */
+  padding: 0;
+  margin: 0;
+}
+
+.experiencia-list li {
+  margin-bottom: 15px; /* Espaciado entre elementos de la lista */
+  background-color: #fff;
+  padding: 10px;
+  border-radius: 10px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Estilo para cada experiencia */
+.experiencia-list h3,
+.experiencia-list p,
+.experiencia-list h4 {
+  margin: 5px 0;
+}
+
+/* Animaciones divertidas */
+@keyframes bounce {
+  0%, 100% {
     transform: translateY(0);
-    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
   }
-  
-  /* Estilos para las etiquetas */
-  label {
-    font-size: 1.2rem;
-    color: #333;
-    display: block;
-    margin-bottom: 5px;
+  50% {
+    transform: translateY(-10px);
   }
-  
-  /* Animaciones divertidas */
-  @keyframes bounce {
-    0%, 100% {
-      transform: translateY(0);
-    }
-    50% {
-      transform: translateY(-10px);
-    }
-  }
-  
-  h2 {
-    animation: bounce 2s infinite; /* Animación que hace "saltar" el título */
-  }
-  
-  
+}
