@@ -1,8 +1,8 @@
 export interface User {
-    id: string;
-    name: string;
-    mail: string;
-    password: string;
-    comment: string;
-  }
+  _id?: string;      // MongoDB genera automáticamente este campo al insertar
+  name: string;
+  mail: string;     // Añadir el campo email
+  password: string;
+  comment: string;    // Este campo es la "Biografía"
+}
   
