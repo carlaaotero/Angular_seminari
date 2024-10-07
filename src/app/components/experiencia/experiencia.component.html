@@ -1,7 +1,38 @@
-<h1>Experiències</h1>
-<!--<ul>
-  <li *ngFor="let experiencia of experiencias">
-    {{ experiencia.description }}
-  </li>
-</ul>-->
+<div class="experiencia-form">
+  <h2>Crear Nueva Experiencia</h2>
+  
+  <form (ngSubmit)="onSubmit()">
+      <div class="form-group">
+          <label for="owner">Propietario:</label>
+          <input type="text" 
+          id="owner" [(ngModel)]="newExperience.owner"
+           name="owner" required>
+        </div>
+
+      <div class="form-group">
+          <label for="participants">Participantes (separados por comas):</label>
+          <input type="text" id="participants" [(ngModel)]="newExperience.participants" name="participants" required>
+      </div>
+
+      <div class="form-group">
+          <label for="description">Descripción:</label>
+          <textarea id="description" [(ngModel)]="newExperience.description" name="description" required></textarea>
+      </div>
+
+      <button type="submit">Enviar</button>
+  </form>
+
+  <!-- Lista de usuarios a la derecha -->
+  <h2>Lista de Experiencias</h2>
+  <ul>
+    <li *ngFor="let experiencia of experiencias; let i = index">
+      <div>
+        <strong>{{ experiencia.owner }}</strong>
+       
+      </div>
+    </li>
+  </ul>
+</div>
+
+
 

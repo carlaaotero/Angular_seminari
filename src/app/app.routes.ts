@@ -8,7 +8,7 @@ export const routes: Routes = [
     { path: '', redirectTo: 'home', pathMatch: 'full' }, // Redirigeix a Home per defecte
     { path: 'home', component: HomeComponent },
     { path: 'usuaris', component: UsuarisComponent },
-    { path: 'experiencies', component: ExperienciaComponent },
+    { path: 'experiencia', component: ExperienciaComponent },
 ];
 
 @NgModule({

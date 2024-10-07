@@ -1,23 +1,37 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { Component } from '@angular/core';
+import { FormsModule } from '@angular/forms';  // Importar FormsModule para el uso de ngModel
+import { ExperienciaService } from '../../services/experiencia.service';  // Servicio que manejará las peticiones
+import { Experiencia } from '../../models/experiencia.model';  // Interfaz del modelo de experiencia
 
-import { ExperienciaComponent } from './experiencia.component';
+@Component({
+  selector: 'app-experiencia',
+  templateUrl: './experiencia.component.html',
+  styleUrls: ['./experiencia.component.css'],
+  standalone: true,
+  imports: [FormsModule]  // Importar FormsModule aquí
+})
+export class ExperienciaComponent {
+  newExperience: Experiencia = {
+    owner: '',
+    participants: [],  // Mantener como un array aquí
+    description: ''
+  };
+experiencias: any;
 
-describe('ExperienciaComponent', () => {
-  let component: ExperienciaComponent;
-  let fixture: ComponentFixture<ExperienciaComponent>;
+  constructor(private experienciaService: ExperienciaService) {}
 
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      imports: [ExperienciaComponent]
-    })
-    .compileComponents();
+  // Método que se ejecuta cuando se envía el formulario
+  onSubmit(): void {
+    // Convertir la lista de participantes a partir de la cadena
+    const participantString = this.newExperience.participants.join(', ');
+    this.newExperience.participants = participantString.split(',').map(participant => participant.trim());
 
-    fixture = TestBed.createComponent(ExperienciaComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
+    this.experienciaService.addExperiencia(this.newExperience).subscribe((response) => {
+      console.log('Experiencia creada', response);
+      // Lógica adicional aquí
+    });
+  }
+}
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
-});
+
+

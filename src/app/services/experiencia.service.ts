@@ -19,7 +19,7 @@ export class ExperienciaService {
     return this.http.get<Experiencia>(`${this.apiUrl}/${id}`);
   }
 
-  createExperiencia(experiencia: Experiencia): Observable<Experiencia> {
+  addExperiencia(experiencia: Experiencia): Observable<Experiencia> {
     return this.http.post<Experiencia>(this.apiUrl, experiencia);
   }
 
@@ -31,3 +31,6 @@ export class ExperienciaService {
     return this.http.delete<void>(`${this.apiUrl}/${id}`);
   }
 }
+
+
+
