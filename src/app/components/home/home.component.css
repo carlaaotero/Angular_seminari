@@ -1,48 +1,50 @@
+/* home.component.css */
+
 /* Estilos para el título principal */
 h1 {
-    font-family: Arial, sans-serif;
-    font-size: 2.5rem;
-    color: #333;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 3rem;
+    color: #4C0000; /* Rojo oscuro */
     text-align: center;
-    margin-bottom: 50px;
-}
-
-/* Estilos para los botones */
-button {
-    background-color: #007bff;
-    color: white;
+    margin-bottom: 30px;
+  }
+  
+  /* Estilos para los botones */
+  button {
+    background-color: #8B0000; /* Rojo vino */
+    color: #FAF3E0; /* Blanco roto */
     border: none;
     padding: 15px 30px;
     font-size: 1.2rem;
     margin: 10px;
     cursor: pointer;
-    border-radius: 5px;
+    border-radius: 10px;
     transition: background-color 0.3s ease;
-}
-
-/* Estilo para los botones al pasar el mouse */
-button:hover {
-    background-color: #0056b3;
-}
-
-/* Contenedor que centra los elementos (título y botones) */
-.container {
+  }
+  
+  /* Efecto hover en botones */
+  button:hover {
+    background-color: #4C0000; /* Rojo oscuro */
+  }
+  
+  /* Contenedor */
+  .container {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     height: 100vh;
-    margin: 0;
-}
-
-/* Ajuste de estilo para pantallas pequeñas */
-@media (max-width: 600px) {
+  }
+  
+  /* Estilo responsivo */
+  @media (max-width: 600px) {
     button {
-        padding: 10px 20px;
-        font-size: 1rem;
+      padding: 10px 20px;
+      font-size: 1rem;
     }
-
+  
     h1 {
-        font-size: 2rem;
+      font-size: 2rem;
     }
-}
+  }
+  

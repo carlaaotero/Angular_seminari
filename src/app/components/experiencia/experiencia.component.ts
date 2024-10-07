@@ -48,9 +48,9 @@ export class ExperienciaComponent implements OnInit {
       }
     );
   }
-
-
+  
   // Obtener la lista de usuarios desde la API
+
   getUsers(): void {
     this.userService.getUsers().subscribe(
       (data: User[]) => {

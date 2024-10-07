@@ -1,180 +1,98 @@
+/* experiencia.component.css */
+
 /* Estilos generales */
 body {
-  font-family: 'Comic Sans MS', cursive, sans-serif; /* Tipografía divertida */
-  background-color: #f0f8ff;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Tipografía más moderna */
+  background-color: #FAF3E0; /* Blanco roto para el fondo */
   margin: 0;
+  padding: 0;
 }
 
-/* Contenedor principal para organizar los elementos */
+/* Contenedor principal */
 .container {
-  display: flex; /* Flexbox para organizar el formulario y la lista */
-  justify-content: space-between; /* Espacio entre los elementos */
-  width: 80%; /* Limitar el ancho total del contenedor */
-  align-items: flex-start; /* Alinear elementos al inicio verticalmente */
-  margin: 20px auto; /* Centrarse horizontalmente */
+  display: flex;
+  justify-content: space-between;
+  width: 80%;
+  margin: 20px auto;
+  align-items: flex-start;
 }
 
 /* Contenedor del formulario */
 .experiencia-form {
-  background-color: #ffcccb;
+  background-color: #8B0000; /* Rojo vino para el fondo */
+  color: white; /* Texto blanco */
   padding: 30px;
   border-radius: 15px;
   box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.2);
-  max-width: 400px; /* Limitar el ancho máximo del formulario */
-  width: 45%; /* Ajustar al 45% del contenedor para permitir espacio */
+  max-width: 400px;
+  width: 45%;
   text-align: center;
 }
 
 /* Título */
 h2 {
-  color: #ff69b4; /* Color vibrante */
-  font-size: 2.5rem;
+  color: #FAF3E0; /* Blanco roto para los títulos */
+  font-size: 2rem;
   margin-bottom: 20px;
-  text-shadow: 2px 2px #ffa07a;
-  animation: bounce 2s infinite; /* Animación que hace "saltar" el título */
 }
 
 /* Estilos para los inputs y textarea */
-input[type="text"], textarea {
+input[type="text"], textarea, select {
   width: 100%;
   padding: 10px;
   margin: 10px 0;
   border-radius: 8px;
-  border: 2px solid #ff69b4;
-  outline: none;
+  border: 2px solid #4C0000; /* Rojo oscuro para los bordes */
   font-size: 1rem;
-  transition: all 0.3s ease-in-out;
+  box-sizing: border-box;
 }
 
-/* Efecto hover en los campos de formulario */
-input[type="text"]:focus, textarea:focus {
-  border-color: #ffa07a;
-  box-shadow: 0px 0px 10px #ff69b4;
+input[type="text"]:focus, textarea:focus, select:focus {
+  border-color: #4CAF50; /* Verde hoja para el foco */
 }
 
 /* Botón de enviar */
 button {
-  background-color: #ff69b4;
+  background-color: #4CAF50; /* Verde hoja */
   border: none;
   color: white;
   padding: 12px 20px;
   font-size: 1.2rem;
   cursor: pointer;
   border-radius: 25px;
-  transition: all 0.3s ease-in-out;
   margin-top: 15px;
   box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
 }
 
-/* Efecto hover en el botón */
 button:hover {
-  background-color: #ffa07a;
-  transform: translateY(-3px);
-  box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.3);
+  background-color: #388E3C; /* Verde más oscuro */
 }
 
-/* Efecto al hacer clic en el botón */
-button:active {
-  transform: translateY(0);
-  box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
-}
-
-/* Estilos para las etiquetas */
-label {
-  font-size: 1.2rem;
-  color: #333;
-  display: block;
-  margin-bottom: 5px;
-}
-
-/* Contenedor para la lista de experiencias */
+/* Lista de experiencias */
 .experiencia-list {
-  background-color: #f1f1f1;
+  background-color: #4C0000; /* Rojo oscuro para el fondo */
+  color: #FAF3E0; /* Blanco roto para el texto */
   padding: 20px;
   border-radius: 15px;
   box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.2);
-  max-width: 600px; /* Limitar el ancho máximo */
-  width: 45%; /* Ajustar al 45% del contenedor */
+  max-width: 600px;
+  width: 45%;
 }
 
-/* Estilo general para la lista de experiencias */
 .experiencia-list ul {
-  list-style: none; /* Quitar las viñetas */
+  list-style: none;
   padding: 0;
   margin: 0;
 }
 
 .experiencia-list li {
-  margin-bottom: 15px; /* Espaciado entre elementos de la lista */
-  background-color: #fff;
-  padding: 10px;
+  background-color: #8B0000; /* Rojo vino para cada item */
+  padding: 15px;
   border-radius: 10px;
+  margin-bottom: 10px;
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-/* Estilo para cada experiencia */
-.experiencia-list h3,
-.experiencia-list p,
-.experiencia-list h4 {
+.experiencia-list h3, .experiencia-list p, .experiencia-list h4 {
   margin: 5px 0;
-}
-
-/* Animaciones divertidas */
-@keyframes bounce {
-  0%, 100% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(-10px);
-  }
-}
-
-/* Estilo para el contenedor del formulario */
-.experiencia-form {
-  background-color: #ffcccb;
-  padding: 30px;
-  border-radius: 15px;
-  box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.2);
-  max-width: 400px; /* Ancho fijo */
-  width: 100%;
-  text-align: center;
-}
-
-/* Estilo del cuadro de texto para la descripción */
-textarea#description {
-  width: 100%; /* Ancho completo del formulario */
-  height: 150px; /* Altura fija */
-  resize: none; /* Evitar que se pueda redimensionar */
-  padding: 10px;
-  margin: 10px 0;
-  border-radius: 8px;
-  border: 2px solid #ff69b4;
-  outline: none;
-  font-size: 1rem;
-  transition: all 0.3s ease-in-out;
-}
-
-/* Límite de caracteres y advertencia */
-textarea#description::after {
-  content: ' (máximo 300 caracteres)';
-  font-size: 0.8rem;
-  color: #888;
-  position: absolute;
-  right: 20px;
-  bottom: 10px;
-}
-
-/* Restablecer estilos generales para el cuerpo */
-body {
-  font-family: 'Comic Sans MS', cursive, sans-serif;
-  background-color: #f0f8ff;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-  margin: 0;
 }
