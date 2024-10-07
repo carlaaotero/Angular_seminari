@@ -1,7 +1,9 @@
-
+// experiencia.model.ts
 export interface Experiencia {
-    owner: string;  
-    participants:  string[], // Define como un array desde el principio;  // Llista d'usuaris
-    description: string;
-  }
+  _id?: string;  // Propiedad opcional _id para el ID de la experiencia
+  owner: string; // ID del propietario (usuario)
+  participants: string[]; // Array de IDs de participantes
+  description: string; // Descripción de la experiencia
+}
+
   

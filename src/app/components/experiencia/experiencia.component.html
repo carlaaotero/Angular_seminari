@@ -18,12 +18,10 @@
             {{ user.name }}
           </option>
         </select>
-        <!-- Muestra los participantes seleccionados para debugging -->
-        
       </div>
       <div class="form-group">
         <label for="description">Descripción:</label>
-        <textarea id="description" [(ngModel)]="newExperience.description" name="description" required maxlength="300"></textarea> <!-- Límite de caracteres y no resizable -->
+        <textarea id="description" [(ngModel)]="newExperience.description" name="description" required maxlength="300"></textarea>
       </div>
       <button type="submit">Enviar</button>
     </form>
@@ -41,6 +39,9 @@
             {{ getUserNameById(participant) }}
           </li>
         </ul>
+        <!-- Botón para eliminar la experiencia -->
+        <button *ngIf="experiencia._id !== undefined" (click)="deleteExperience(experiencia._id)">Eliminar</button>
+        <!-- Agregar verificación *ngIf para asegurarse de que _id no es undefined -->
       </li>
     </ul>
   </div>

@@ -35,10 +35,12 @@ export class ExperienciaComponent implements OnInit {
   }
 
   // Obtener la lista de experiencias desde la API
+  
   getExperiencias(): void {
     this.experienciaService.getExperiencias().subscribe(
       (data: Experiencia[]) => {
-        this.experiencias = data;
+        // Filtrar experiencias que tengan _id definido
+        this.experiencias = data.filter(exp => exp._id !== undefined);
         console.log('Experiencias recibidas:', data);
       },
       (error) => {
@@ -46,6 +48,7 @@ export class ExperienciaComponent implements OnInit {
       }
     );
   }
+
 
   // Obtener la lista de usuarios desde la API
   getUsers(): void {
@@ -80,6 +83,19 @@ export class ExperienciaComponent implements OnInit {
       },
       (error) => {
         console.error('Error al crear la experiencia:', error);
+      }
+    );
+  }
+
+  // Método para eliminar una experiencia por su ID
+  deleteExperience(experienceId: string): void {
+    this.experienciaService.deleteExperiencia(experienceId).subscribe(
+      () => {
+        console.log(`Experiencia con ID ${experienceId} eliminada`);
+        this.getExperiencias(); // Actualizar la lista de experiencias después de la eliminación
+      },
+      (error) => {
+        console.error('Error al eliminar la experiencia:', error);
       }
     );
   }
