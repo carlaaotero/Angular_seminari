@@ -5,6 +5,7 @@ import { User } from '../../models/user.model';
 @Component({
   selector: 'app-usuaris',
   templateUrl: './usuaris.component.html',
+  standalone: true,
   styleUrls: ['./usuaris.component.css']
 })
 export class UsuarisComponent implements OnInit {

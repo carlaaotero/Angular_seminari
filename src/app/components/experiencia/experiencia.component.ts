@@ -5,6 +5,7 @@ import { Experiencia } from '../../models/experiencia.model';
 @Component({
   selector: 'app-experiencia',
   templateUrl: './experiencia.component.html',
+  standalone: true,
   styleUrls: ['./experiencia.component.css']
 })
 export class ExperienciaComponent implements OnInit {
