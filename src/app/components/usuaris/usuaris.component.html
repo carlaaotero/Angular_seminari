@@ -27,7 +27,6 @@
           email />
         <div *ngIf="userForm.controls['mail']?.invalid && (userForm.controls['mail']?.touched || formSubmitted)" class="error-message">
           {{ userForm.controls['mail'].errors?.['required'] ? 'El email es obligatorio.' : 'Formato de email no válido.' }}
-
         </div>
       </div>
 
@@ -43,8 +42,6 @@
           minlength="7" />
         <div *ngIf="userForm.controls['password']?.invalid && (userForm.controls['password']?.touched || formSubmitted)" class="error-message">
           {{ userForm.controls['password'].errors?.['required'] ? 'La contraseña es obligatoria.' : 'La contraseña debe tener al menos 7 caracteres.' }}
-
-
         </div>
       </div>
 
@@ -86,17 +83,19 @@
     <h2>Lista de Usuarios</h2>
     <ul>
       <li *ngFor="let usuario of usuarios; let i = index">
-        <div>
+        <div class="user-info">
           <strong>{{ usuario.name }}</strong>
-          <button (click)="toggleDesplegable(i)" class="detalles">
-            {{ desplegado[i] ? 'Ocultar detalles' : 'Mostrar detalles' }}
-          </button>
-          <button (click)="eliminarElemento(i)" class="eliminar">Eliminar</button>
+          <div class="button-container">
+            <button (click)="toggleDesplegable(i)" class="detalles mostrar-detalles">
+              {{ desplegado[i] ? 'Ocultar detalles' : 'Mostrar detalles' }}
+            </button>
+            <button (click)="eliminarElemento(i)" class="eliminar">Eliminar</button>
+          </div>
         </div>
 
         <!-- Detalles del usuario -->
-        <div *ngIf="desplegado[i]">
-          <p><strong>Email:</strong> {{ usuario.mail}}</p>
+        <div *ngIf="desplegado[i]" class="user-details">
+          <p><strong>Email:</strong> {{ usuario.mail }}</p>
            <!-- Contraseña con visibilidad controlada -->
            <p><strong>Contraseña:</strong>
             <span *ngIf="mostrarPassword[i]">{{ usuario.password }}</span>
@@ -110,5 +109,3 @@
     </ul>
   </div>
 </div>
-
-
