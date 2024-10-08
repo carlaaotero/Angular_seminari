@@ -1,4 +1,3 @@
-// experiencia.component.ts
 import { Component, OnInit } from '@angular/core';
 import { ExperienciaService } from '../../services/experiencia.service';
 import { Experiencia } from '../../models/experiencia.model';

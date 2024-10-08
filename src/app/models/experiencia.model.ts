@@ -1,4 +1,3 @@
-// experiencia.model.ts
 export interface Experiencia {
   _id?: string;  // Propiedad opcional _id para el ID de la experiencia
   owner: string; // ID del propietario (usuario)
