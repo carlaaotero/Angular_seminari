@@ -95,13 +95,22 @@
 
         <!-- Detalles del usuario -->
         <div *ngIf="desplegado[i]" class="user-details">
-          <p><strong>Email:</strong> {{ usuario.mail }}</p>
+          <p><strong>Email:</strong> {{ usuario.mail | maskEmail}}</p>
            <!-- Contraseña con visibilidad controlada -->
            <p><strong>Contraseña:</strong>
             <span *ngIf="mostrarPassword[i]">{{ usuario.password }}</span>
             <span *ngIf="!mostrarPassword[i]">********</span>
           </p>
-          <p><strong>Biografía:</strong> {{ usuario.comment }}</p>
+          <!-- Biografía con lógica de truncado y leer más -->
+          <p><strong>Biografía:</strong>
+            <!-- Si desplegarBiografia[i] es verdadero, muestra todo, si no, trunca a 10 caracteres -->
+            {{ desplegarBiografia[i] ? usuario.comment : (usuario.comment | truncate: 10) }}
+          </p>
+
+          <!-- Botón para alternar entre mostrar más o menos en la biografía -->
+          <button (click)="toggleBiografia(i)" class="leer-mas">
+            {{ desplegarBiografia[i] ? 'Leer menos' : 'Leer más' }}
+          </button>        
 
           <button (click)="prepararEdicion(usuario, i)" class="modificar">Modificar</button>
         </div>

@@ -38,7 +38,7 @@
     <ul>
       <li *ngFor="let experiencia of experiencias">
         <h3>Propietario: {{ getUserNameById(experiencia.owner) }}</h3>
-        <p>Descripción: {{ experiencia.description }}</p>
+        <p>Descripción: {{ experiencia.description | truncate: 60}}</p>
         <h4>Participantes:</h4>
         <ul>
           <li *ngFor="let participant of experiencia.participants">

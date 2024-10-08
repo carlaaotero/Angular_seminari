@@ -7,13 +7,14 @@ import { User } from '../../models/user.model';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
+import { TruncatePipe } from '../../pipes/truncate.pipe';
 
 @Component({
   selector: 'app-experiencia',
   templateUrl: './experiencia.component.html',
   standalone: true,
   styleUrls: ['./experiencia.component.css'],
-  imports: [FormsModule, CommonModule, HttpClientModule]
+  imports: [FormsModule, CommonModule, HttpClientModule, TruncatePipe]
 })
 export class ExperienciaComponent implements OnInit {
   experiencias: Experiencia[] = []; // Lista de experiencias
@@ -33,6 +34,7 @@ export class ExperienciaComponent implements OnInit {
   ngOnInit(): void {
     this.getExperiencias(); // Obtener la lista de experiencias
     this.getUsers(); // Obtener la lista de usuarios
+
   }
 
   // Obtener la lista de experiencias desde la API

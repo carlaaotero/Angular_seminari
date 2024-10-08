@@ -3,8 +3,8 @@ import { CommonModule } from '@angular/common';
 import { FormsModule, NgForm } from '@angular/forms';  // Import FormsModule y NgForm para manejar el formulario
 import { User } from '../../models/user.model'; // Importar el modelo User desde la subcarpeta services
 import { UserService } from '../../services/user.service'; // Importar el servicio UserService desde la subcarpeta services
-//import { TruncatePipe } from '../pipe/truncate.pipe';
-//import { MaskEmailPipe } from '../pipe/maskEmail.pipe';
+import { TruncatePipe } from '../../pipes/truncate.pipe';
+import { MaskEmailPipe } from '../../pipes/maskEmail.pipe';
 
 
 @Component({
@@ -12,12 +12,13 @@ import { UserService } from '../../services/user.service'; // Importar el servic
   templateUrl: './usuaris.component.html',
   styleUrls: ['./usuaris.component.css'],
   standalone: true,  // Esto convierte el componente en independiente
-  imports: [CommonModule, FormsModule]  // Importar CommonModule y FormsModule
+  imports: [CommonModule, FormsModule, TruncatePipe, MaskEmailPipe]  // Importar CommonModule y FormsModule
 
 })
 export class UsuarisComponent implements OnInit {
   usuarios: User[] = []; // Lista de usuarios con tipado User
   desplegado: boolean[] = []; // Controla si el desplegable de cada usuario está abierto o cerrado
+  desplegarBiografia: boolean[] = [];
   mostrarPassword: boolean[] = []; // Array para controlar la visibilidad de la contraseña
 
   nuevoUsuario: User = {
@@ -139,6 +140,12 @@ export class UsuarisComponent implements OnInit {
   // Función para alternar la visualización del desplegable
   toggleDesplegable(index: number): void {
     this.desplegado[index] = !this.desplegado[index];
+  }
+
+  // Método para alternar entre mostrar más o menos texto
+  toggleBiografia(index: number) {
+    // Cambia el estado entre desplegado y no desplegado
+    this.desplegarBiografia[index] = !this.desplegarBiografia[index];
   }
 
   // Función para alternar la visibilidad de la contraseña
