@@ -11,11 +11,11 @@
   
   /* Imagen del logo de Angular */
   .angular-logo {
-    width: 120px; /* Tamaño de la imagen */
+    width: 120px;
     height: auto;
     margin-bottom: 20px; /* Separación del título */
-    animation: bounce 2s infinite; /* Añadir animación de rebote */
-  }
+    animation: bounce 2s infinite;
+  }  
   
   /* Título */
   .title {

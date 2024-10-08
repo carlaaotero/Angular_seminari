@@ -1,5 +1,5 @@
-<!-- experiencia.component.html -->
 <div class="container">
+  <!-- Formulario para crear una nueva experiencia -->
   <div class="experiencia-form">
     <h2>Crear Nueva Experiencia</h2>
     <form (ngSubmit)="onSubmit()">
@@ -22,11 +22,17 @@
       <div class="form-group">
         <label for="description">Descripción:</label>
         <textarea id="description" [(ngModel)]="newExperience.description" name="description" required maxlength="300"></textarea>
+        <small class="character-limit">Máximo 300 caracteres</small>
       </div>
       <button type="submit">Enviar</button>
     </form>
+    <!-- Mensaje de error debajo del formulario -->
+    <div class="error-message" *ngIf="errorMessage">
+      {{ errorMessage }}
+    </div>
   </div>
-  
+
+  <!-- Lista de experiencias -->
   <div class="experiencia-list">
     <h1>Lista de Experiencias</h1>
     <ul>
@@ -41,7 +47,6 @@
         </ul>
         <!-- Botón para eliminar la experiencia -->
         <button *ngIf="experiencia._id !== undefined" (click)="deleteExperience(experiencia._id)">Eliminar</button>
-        <!-- Agregar verificación *ngIf para asegurarse de que _id no es undefined -->
       </li>
     </ul>
   </div>

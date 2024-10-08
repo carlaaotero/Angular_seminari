@@ -19,6 +19,7 @@ export class ExperienciaComponent implements OnInit {
   experiencias: Experiencia[] = []; // Lista de experiencias
   users: User[] = []; // Lista de usuarios para los desplegables
   selectedParticipants: string[] = []; // Participantes seleccionados como ObjectId
+  errorMessage: string = ''; // Variable para mostrar mensajes de error
 
   // Estructura inicial para una nueva experiencia
   newExperience: Experiencia = {
@@ -35,7 +36,6 @@ export class ExperienciaComponent implements OnInit {
   }
 
   // Obtener la lista de experiencias desde la API
-  
   getExperiencias(): void {
     this.experienciaService.getExperiencias().subscribe(
       (data: Experiencia[]) => {
@@ -48,9 +48,8 @@ export class ExperienciaComponent implements OnInit {
       }
     );
   }
-  
-  // Obtener la lista de usuarios desde la API
 
+  // Obtener la lista de usuarios desde la API
   getUsers(): void {
     this.userService.getUsers().subscribe(
       (data: User[]) => {
@@ -69,8 +68,16 @@ export class ExperienciaComponent implements OnInit {
     return user ? user.name : 'Desconocido';
   }
 
-  // Manejar el envío del formulario
+  // Manejar el envío del formulario con validación de campos
   onSubmit(): void {
+    this.errorMessage = ''; // Limpiar mensajes de error
+
+    // Verificar si los campos están vacíos
+    if (!this.newExperience.owner || this.selectedParticipants.length === 0 || !this.newExperience.description) {
+      this.errorMessage = 'Todos los campos son obligatorios.';
+      return;
+    }
+
     // Convertir selectedParticipants a ObjectId[] antes de enviar al backend
     this.newExperience.participants = this.selectedParticipants;
 
@@ -108,5 +115,6 @@ export class ExperienciaComponent implements OnInit {
       description: ''
     };
     this.selectedParticipants = []; // Limpiar los participantes seleccionados
+    this.errorMessage = ''; // Limpiar el mensaje de error
   }
 }
